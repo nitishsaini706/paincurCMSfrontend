@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
-import { uploadImage } from '../Utils/api';
+import { createBlog, uploadImage } from '../Utils/api';
 
 const Addblog = () => {
   const [formData, setFormData] = useState({
@@ -13,21 +13,22 @@ const Addblog = () => {
     body: ''
   });
   const [formErrors, setFormErrors] = useState({});
-  const [imageResponse, setImageResponse] = useState(null); // State to store the image upload response
+  const [image, setImageResponse] = useState(null); // State to store the image upload response
 
   const generateSlug = (text) => {
     return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   };
 
   const handleImageUpload = async (file) => {
-    const imageData = new FormData();
-    imageData.append('image', file);
-
+   const imageData = {
+    image : file
+   }
     try {
       const response = await uploadImage( imageData );
-      const result = await response.json();
-      setImageResponse(result);
-      console.log('Image uploaded:', result);
+      const imageRes = response.data.file.path
+     console.log(response.data.file.path)
+     setImageResponse(imageRes);
+      //console.log('Image uploaded:', result);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -66,25 +67,20 @@ const Addblog = () => {
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       const formDataToSend = {
-        services: formData.services,
-        imageResponse, // Use the image upload response here
+        service: formData.services,
+        image,
         title: formData.title,
         slug: formData.slug,
-        body: formData.body
+        body: formData.body,
+        ispublished : true
       };
 
       console.log('Form data submitted:', formDataToSend);
 
       try {
-        const response = await fetch('/your-form-submit-endpoint', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formDataToSend),
-        });
-        const result = await response.json();
-        console.log('Form submitted:', result);
+        const response = await createBlog(formDataToSend)
+      
+        console.log('Form submitted:', response);
       } catch (error) {
         console.error('Error submitting form:', error);
       }

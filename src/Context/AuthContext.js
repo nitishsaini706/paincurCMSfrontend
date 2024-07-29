@@ -1,7 +1,7 @@
 
 import React, { createContext, useReducer, useEffect } from 'react';
-import api, { loginUser, registerUser } from './utils/api';
-import setAuthToken from './utils/setAuthToken';
+import { loginUser, registerUser } from '../Utils/api';
+import setAuthToken from '../Utils/setAuthToken';
 
 const initialState = {
   isAuthenticated: false,
@@ -53,14 +53,14 @@ const AuthProvider = ({ children }) => {
   const login = async (userData) => {
     try {
       const res = await loginUser(userData);
-      const { token } = res.data;
+      const { token,user } = res.data;
       localStorage.setItem('token', token);
       setAuthToken(token);
       const decoded = decodeJWT(token);
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: { user: decoded.user, token }
-      });
+        payload: { user, token }
+      })
       return true;
     } catch (err) {
       console.error('Login error', err.response.data);
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (userData) => {
+  const signup = async (userData) => {
     try {
       const res = await registerUser(userData);
       const { token } = res.data;
@@ -92,7 +92,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, login, register, logout }}>
+    <AuthContext.Provider value={{ ...state, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

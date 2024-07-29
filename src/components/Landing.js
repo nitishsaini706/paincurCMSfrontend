@@ -1,9 +1,25 @@
 // MainContent.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import Sidebar from './Sidebar';
+import Navbar from './Navbar';
+import { getBlogs } from '../Utils/api';
+
 
 const MainContent = () => {
+
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const response = await getBlogs();
+      console.log(response.data)
+    }
+    fetchData();
+  }, []);
   return (
+  <div>
+    <Navbar />
+
+ 
     <div className='flex'>
     <Sidebar />
 
@@ -41,6 +57,7 @@ const MainContent = () => {
       </div>
     </div>
     </div>
+</div>
   );
 };
 

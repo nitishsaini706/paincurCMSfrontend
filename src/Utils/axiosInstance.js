@@ -2,8 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://paincurebackend.onrender.com', 
-  timeout: 10000,
+  baseURL: 'https://paincurebackend.onrender.com',
   headers: {
     'Content-Type': 'application/json'
   },
