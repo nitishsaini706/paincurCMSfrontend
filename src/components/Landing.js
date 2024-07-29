@@ -1,8 +1,12 @@
 // MainContent.js
 import React from 'react';
+import Sidebar from './Sidebar';
 
 const MainContent = () => {
   return (
+    <div className='flex'>
+    <Sidebar />
+
     <div className="flex p-6 mx-5">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">News</h2>
@@ -35,6 +39,7 @@ const MainContent = () => {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };

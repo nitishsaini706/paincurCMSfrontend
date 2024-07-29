@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className="p-3 mx-[10px] w-64 h-screen bg-gray-200 text-black">
         
       <div className="p-4 flex">
-        <img src="/logo.png" className='w-7'></img>
+        <img src="/logo.png" className='w-10'></img>
         <h1 className='text-2xl ml-2'>paincure.Ai</h1>
       </div>
       <div className='flex justify-between p-4'>
@@ -17,7 +17,7 @@ const Sidebar = () => {
       <div className='mt-5 border-t-2 border-black pt-10'>
         <div className='flex items-center mb-2'>
 
-      <BsBox />
+ <BsBox />
 
         <p className='ml-3 text-lg'>Blogs</p>
         </div>
@@ -25,7 +25,7 @@ const Sidebar = () => {
 
       <BsBox />
 
-      <p className='ml-3 text-lg'>Add Blogs</p>
+      <p to='/add-blogs' className='ml-3 text-lg'>Add Blogs</p>
         </div>
       </div>
     </div>
