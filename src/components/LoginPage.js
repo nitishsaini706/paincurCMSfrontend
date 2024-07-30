@@ -1,6 +1,7 @@
 import React, { useState,useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const LoginPage = () => {
     if (!formData.password) {
       errors.password = 'Password is required';
     }
+    
     return errors;
   };
 
@@ -37,12 +39,16 @@ const LoginPage = () => {
       try {
         setLoading(true);
         const response = await login(formData)
-        console.log('Form data submitted:', response.data);
-        if(response == true){
+        console.log('Form data submitted:', response);
+        if(response.success === true){
           history('/blogs');
+          toast.success("Login Successful")
+        }else{
+          toast.error(response.msg)
         }
       } catch (error) {
         console.error('Error submitting form:', error);
+        toast.error("Error logging in")
         // Handle error
       } finally {
         setLoading(false);

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { AuthContext } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ const SignUp = () => {
       [id]: value
     }));
   };
+  const history = useNavigate();
 
   const validateForm = () => {
     const errors = {};
@@ -37,6 +39,7 @@ const SignUp = () => {
     } else if (formData.password.length < 6) {
       errors.password = 'Password must be at least 6 characters long';
     }
+    toast.error(errors);
     return errors;
   };
 
@@ -48,9 +51,13 @@ const SignUp = () => {
         setLoading(true);
         const response = await signup(formData);
         console.log('Sign-up successful:', response.data);
-        // Handle successful sign-up
+        toast.success('Sign-up successful:');
+        if(response.data.success){
+          history('/login');
+        }
       } catch (error) {
         console.error('Error signing up:', error);
+        toast.error('Error signing up:')
         // Handle error
       } finally {
         setLoading(false);

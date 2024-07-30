@@ -13,8 +13,8 @@ const Sidebar = () => {
         <img src="/logo.png" className='w-10'></img>
         <h1 className='text-2xl ml-2'>paincure.Ai</h1>
       </div>
-      <div className='flex justify-between p-2'>
-        <h2 className='text-lg'>Logged In</h2>
+      <div className='flex justify-around p-2'>
+        <h2 className='text-lg'>Login user</h2>
         <h2 className='text-xl font-bold'>{user}</h2>
       </div>
       <div className='mt-2 border-t-2 border-black pt-10'>
@@ -25,7 +25,7 @@ const Sidebar = () => {
         <div className='flex items-center'>
       <BsBox />
 
-      <Link to='/add-blogs' className='ml-3 text-lg no-underline text-black'>Add Blogs</Link>
+      <Link to='/add-blog' className='ml-3 text-lg no-underline text-black'>Add Blogs</Link>
         </div>
       </div>
     </div>

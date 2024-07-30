@@ -6,10 +6,10 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <nav className="bg-blue-600 p-4 flex justify-between items-center">
+    <nav className="sticky top-0 bg-blue-600 p-4 flex justify-between items-center">
       <div className="flex items-center">
         <Link to="/tasks">
-         <h1 className='text-white text-3xl'>Task Management App</h1>
+         <h1 className='text-white text-3xl'>Content Management System</h1>
         </Link>
       </div>
       <div>

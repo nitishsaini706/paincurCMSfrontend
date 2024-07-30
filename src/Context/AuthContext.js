@@ -61,10 +61,10 @@ const AuthProvider = ({ children }) => {
         type: 'LOGIN_SUCCESS',
         payload: { user, token }
       })
-      return true;
+      return {success:true,msg:"Login successful"};
     } catch (err) {
       console.error('Login error', err.response.data);
-      return false;
+      return {success:false,msg:err.response.data.message};
     }
   };
 
