@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
 
@@ -8,13 +8,15 @@ const SignUp = () => {
     email: '',
     username: '',
     password: '',
-    confrimPassword: '',
+    confirmPassword: '',
     phone: ''
   });
 
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const {signup} = useContext(AuthContext)
+  const { signup } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -22,7 +24,6 @@ const SignUp = () => {
       [id]: value
     }));
   };
-  const history = useNavigate();
 
   const validateForm = () => {
     const errors = {};
@@ -39,31 +40,33 @@ const SignUp = () => {
     } else if (formData.password.length < 6) {
       errors.password = 'Password must be at least 6 characters long';
     }
-    toast.error(errors);
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
     return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
+    setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
       try {
         setLoading(true);
         const response = await signup(formData);
-        console.log('Sign-up successful:', response.data);
-        toast.success('Sign-up successful:');
-        if(response.data.success){
-          history('/login');
+        console.log('Sign-up successful:', response);
+        if (response && response.data && response.data.status === 200) {
+          navigate('/login');
+          toast.success('Sign-up successful:');
         }
       } catch (error) {
         console.error('Error signing up:', error);
-        toast.error('Error signing up:')
-        // Handle error
+        toast.error('Error signing up:'+error.response.data.message);
       } finally {
         setLoading(false);
       }
     } else {
-      setFormErrors(errors);
+      toast.error('Please fix the errors in the form.');
     }
   };
 
@@ -127,16 +130,16 @@ const SignUp = () => {
             {formErrors.password && <p className="text-red-500 text-sm mt-1">{formErrors.password}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-white text-sm mb-2">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="block text-white text-sm mb-2">Confirm Password</label>
             <input
               type="password"
               id="confirmPassword"
               className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
-              placeholder="Choose a strong password"
-              value={formData.confrimPassword}
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
               onChange={handleChange}
             />
-            {formErrors.password && <p className="text-red-500 text-sm mt-1">{formErrors.password}</p>}
+            {formErrors.confirmPassword && <p className="text-red-500 text-sm mt-1">{formErrors.confirmPassword}</p>}
           </div>
           <button
             type="submit"

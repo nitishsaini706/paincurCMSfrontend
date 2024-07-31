@@ -88,7 +88,7 @@ const MainContent = () => {
                       <tr key={data.slug} >
                         <td className='w-[100px] h-[100px] p-1'><img src={data.image} alt="" /></td>
                         <td className='text-wrap w-[150px] ml-2'>{data.title}</td>
-                        <td ><a href={`/${data.slug}`}><AiOutlineLink /></a></td>
+                        <td ><a href={`https://paincure.vercel.app/blog/${data.slug}`}><AiOutlineLink /></a></td>
                         <td >{data.service}</td>
                         <td >{new Date(data.creation_time).toLocaleString()}</td>
                         <td ><AiFillEdit className='hover:cursor-pointer' onClick={()=>editBlog(data)} /></td>

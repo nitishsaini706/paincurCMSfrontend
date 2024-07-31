@@ -32,18 +32,25 @@ const authReducer = (state, action) => {
 };
 
 const decodeJWT = (token) => {
-  if (!token) return null;
+  try {
+    if (!token) return null;
 
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-      .join('')
-  );
+    const base64Url = token.split('.')[1];
+    if (!base64Url) throw new Error("Invalid token");
 
-  return JSON.parse(jsonPayload);
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    return null;
+  }
 };
 
 const AuthProvider = ({ children }) => {
@@ -51,13 +58,16 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log('token', token);
     if (token) {
       const decoded = decodeJWT(token);
-      dispatch({
-        type: 'LOGIN_SUCCESS',
-        payload: { isAuthenticated: true,user: decoded.user, token:token }
-      });
-      setAuthToken(token); 
+      if (decoded) {
+        dispatch({
+          type: 'LOGIN_SUCCESS',
+          payload: { isAuthenticated: true, user: decoded.email, token: token }
+        });
+        setAuthToken(token);
+      }
     }
   }, []);
 
@@ -81,17 +91,11 @@ const AuthProvider = ({ children }) => {
   const signup = async (userData) => {
     try {
       const res = await registerUser(userData);
-      const { token } = res.data;
-      localStorage.setItem('token', token);
-      setAuthToken(token);
-      const decoded = decodeJWT(token);
-      dispatch({
-        type: 'LOGIN_SUCCESS',
-        payload: { user: decoded.user, token }
-      });
-      return true;
+
+      return res;
     } catch (err) {
       console.error('Register error', err.response.data);
+      throw err;
     }
   };
 
