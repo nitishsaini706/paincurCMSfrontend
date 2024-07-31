@@ -4,7 +4,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-
+  
   return (
     <nav className="sticky top-0 bg-blue-600 p-4 flex justify-between items-center">
       <div className="flex items-center">

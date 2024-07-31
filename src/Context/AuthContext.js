@@ -61,10 +61,11 @@ const AuthProvider = ({ children }) => {
     console.log('token', token);
     if (token) {
       const decoded = decodeJWT(token);
+      console.log('decoded', decoded)
       if (decoded) {
         dispatch({
           type: 'LOGIN_SUCCESS',
-          payload: { isAuthenticated: true, user: decoded.email, token: token }
+          payload: { isAuthenticated: true, user: decoded.name ?? decoded.email, token: token }
         });
         setAuthToken(token);
       }
@@ -79,7 +80,7 @@ const AuthProvider = ({ children }) => {
       setAuthToken(token);
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: { user, token }
+        payload: { isAuthenticated: true,user:user, token:token }
       });
       return { success: true, msg: "Login successful" };
     } catch (err) {
