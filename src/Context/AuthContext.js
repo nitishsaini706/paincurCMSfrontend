@@ -78,9 +78,14 @@ const AuthProvider = ({ children }) => {
       const { token, user } = res.data;
       localStorage.setItem('token', token);
       setAuthToken(token);
+      let newUser=user;
+      if(user == null || user == undefined){
+        const decoded = decodeJWT(token);
+        newUser = decoded.name ?? decoded.email;
+      }
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: { isAuthenticated: true,user:user, token:token }
+        payload: { isAuthenticated: true,user:newUser, token:token }
       });
       return { success: true, msg: "Login successful" };
     } catch (err) {

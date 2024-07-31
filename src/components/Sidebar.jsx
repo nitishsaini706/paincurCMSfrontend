@@ -15,7 +15,7 @@ const Sidebar = () => {
       </div>
       <div className='flex justify-around p-2'>
         <h2 className='text-lg'>Login </h2>
-        <h2 className='text-xl font-bold'>{user.length > 10 ? user.slice(0,10)+"..." : user}</h2>
+        <h2 className='text-xl font-bold'>{user && user.length > 10 ? user.slice(0,10)+"..." : user}</h2>
       </div>
       <div className='mt-2 border-t-2 border-black pt-10'>
         <div className='flex items-center'>

@@ -191,6 +191,7 @@ const Addblog = () => {
                       value={formData.body}
                       onChange={handleChange}
                       isInvalid={!!formErrors.body}
+                      className="h-[200px]"
                     />
                     <Form.Control.Feedback type="invalid">{formErrors.body}</Form.Control.Feedback>
                   </Form.Group>
