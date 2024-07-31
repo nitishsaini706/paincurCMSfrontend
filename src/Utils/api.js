@@ -8,7 +8,7 @@ export const getBlogsByTitle = (title) => axiosInstance.post('/api/blogs/title',
 export const getBlogBySlug = (slug) => axiosInstance.get('/api/blogs/'+slug);
 export const uploadImage = (file) => {
    console.log(file)
-    return axiosInstance.post('/api/upload', file, {
+    return axiosInstance.post('/upload', file, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

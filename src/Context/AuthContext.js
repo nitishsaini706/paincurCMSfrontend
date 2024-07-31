@@ -1,4 +1,3 @@
-
 import React, { createContext, useReducer, useEffect } from 'react';
 import { loginUser, registerUser } from '../Utils/api';
 import setAuthToken from '../Utils/setAuthToken';
@@ -50,21 +49,32 @@ const decodeJWT = (token) => {
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const login = async (userData) => {
-    try {
-      const res = await loginUser(userData);
-      const { token,user } = res.data;
-      localStorage.setItem('token', token);
-      setAuthToken(token);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
       const decoded = decodeJWT(token);
       dispatch({
         type: 'LOGIN_SUCCESS',
+        payload: { isAuthenticated: true,user: decoded.user, token:token }
+      });
+      setAuthToken(token); 
+    }
+  }, []);
+
+  const login = async (userData) => {
+    try {
+      const res = await loginUser(userData);
+      const { token, user } = res.data;
+      localStorage.setItem('token', token);
+      setAuthToken(token);
+      dispatch({
+        type: 'LOGIN_SUCCESS',
         payload: { user, token }
-      })
-      return {success:true,msg:"Login successful"};
+      });
+      return { success: true, msg: "Login successful" };
     } catch (err) {
       console.error('Login error', err.response.data);
-      return {success:false,msg:err.response.data.message};
+      return { success: false, msg: err.response.data.message };
     }
   };
 

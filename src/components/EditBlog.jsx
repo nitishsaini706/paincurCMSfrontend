@@ -32,13 +32,13 @@ const EditBlog = () => {
         try {
             console.log('imageData', imageData)
             const response = await uploadImage(imageData);
-            const imageRes = response.data.imageLink;
+            const imageRes = response.data.imageUrl;
             console.log('imageRes', imageRes)
             setFormData((prevData) => ({
                 ...prevData,
                 image: imageRes
             }));
-            setImagePreview(response.data.imageLink); // Set the image preview
+            setImagePreview(response.data.imageUrl); // Set the image preview
             setImageUploadError(null); // Reset image upload error
             toast.success("Image uploaded successfully");
         } catch (error) {

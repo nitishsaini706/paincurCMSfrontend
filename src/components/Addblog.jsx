@@ -29,13 +29,13 @@ const Addblog = () => {
     const imageData = { image: file };
     try {
       const response = await uploadImage(imageData);
-      const imageRes = response.data.imageLink;
+      const imageRes = response.data.imageUrl;
       setImageResponse(imageRes);
       setFormData((prevData) => ({
         ...prevData,
         image: imageRes
       }));
-      setImagePreview(response.data.imageLink); // Set the image preview
+      setImagePreview(response.data.imageUrl); // Set the image preview
       setImageUploadError(null); // Reset image upload error
       toast.success("Image uploaded successfully");
     } catch (error) {
