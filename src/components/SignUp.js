@@ -103,16 +103,16 @@ const SignUp = () => {
             {formErrors.username && <p className="text-red-500 text-sm mt-1">{formErrors.username}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-white text-sm mb-2">Phone Number</label>
+            <label htmlFor="phone" className="block text-white text-sm mb-2">Phone Number</label>
             <input
               type="text"
-              id="username"
+              id="phone"
               className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
-              placeholder="Choose a preferred username"
+              placeholder="Choose a preferred phone"
               value={formData.phone}
               onChange={handleChange}
             />
-            {formErrors.username && <p className="text-red-500 text-sm mt-1">{formErrors.username}</p>}
+            {formErrors.phone && <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block text-white text-sm mb-2">Password</label>
