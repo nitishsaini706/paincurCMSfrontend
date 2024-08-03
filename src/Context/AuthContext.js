@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
       let newUser=user;
       if(user == null || user == undefined){
         const decoded = decodeJWT(token);
-        newUser = decoded.name ?? decoded.email;
+        newUser = decoded;
       }
       dispatch({
         type: 'LOGIN_SUCCESS',
