@@ -71,22 +71,22 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#131319]">
-      <div className="flex text-white w-[80px] mb-[50px]">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-blue-400 text-black ">
+      <div className="flex text-black w-[80px] mb-[50px]">
         <div>
-          <img src="/logo.png" className='w-20 h-20' alt="logo" />
+          <img src="/logo.png" className='w-22 h-22 rounded-full' alt="logo" />
         </div>
       </div>
-      <div className="bg-[#27292D] border-2 border-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-gray-400 text-center text-md mb-1">SIGN UP</h2>
-        <h3 className="text-white text-center text-2xl mb-6">Create an account to continue</h3>
+      <div className="bg-white border-2 border-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 className="text-black text-center text-md mb-1">SIGN UP</h2>
+        <h3 className="text-black text-center text-2xl mb-6">Create an account to continue</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-white text-sm mb-2">Email</label>
+            <label htmlFor="email" className="block text-black font-bold text-sm mb-2">Email</label>
             <input
               type="email"
               id="email"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
@@ -94,11 +94,11 @@ const SignUp = () => {
             {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-white text-sm mb-2">Username</label>
+            <label htmlFor="username" className="block text-black text-sm mb-2 font-bold">Username</label>
             <input
               type="text"
               id="username"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Choose a preferred username"
               value={formData.username}
               onChange={handleChange}
@@ -106,11 +106,11 @@ const SignUp = () => {
             {formErrors.username && <p className="text-red-500 text-sm mt-1">{formErrors.username}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="phone" className="block text-white text-sm mb-2">Phone Number</label>
+            <label htmlFor="phone" className="block text-black text-sm mb-2 font-bold">Phone Number</label>
             <input
               type="text"
               id="phone"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Choose a preferred phone"
               value={formData.phone}
               onChange={handleChange}
@@ -118,11 +118,11 @@ const SignUp = () => {
             {formErrors.phone && <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-white text-sm mb-2">Password</label>
+            <label htmlFor="password" className="block text-black text-sm mb-2 font-bold">Password</label>
             <input
               type="password"
               id="password"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Choose a strong password"
               value={formData.password}
               onChange={handleChange}
@@ -130,11 +130,11 @@ const SignUp = () => {
             {formErrors.password && <p className="text-red-500 text-sm mt-1">{formErrors.password}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-white text-sm mb-2">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="block text-black text-sm mb-2 font-bold">Confirm Password</label>
             <input
               type="password"
               id="confirmPassword"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Confirm your password"
               value={formData.confirmPassword}
               onChange={handleChange}
@@ -149,8 +149,8 @@ const SignUp = () => {
             {loading ? 'Creating account...' : 'Continue'}
           </button>
         </form>
-        <div className="text-gray-400 text-start mt-4">
-          Already have an account? <Link to="/login" className="text-gray-200">Login →</Link>
+        <div className="text-black text-start mt-4">
+          Already have an account? <Link to="/login" className="text-black font-bold">Login →</Link>
         </div>
       </div>
     </div>

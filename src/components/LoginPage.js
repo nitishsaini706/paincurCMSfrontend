@@ -59,25 +59,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#131319]">
-      <div className="flex text-white w-[80px] mb-[50px]">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-blue-400 text-black">
+      <div className="flex text-black w-[80px] mb-[50px]">
         <div>
-          <img src="/logo.png" className="w-20 h-20" alt="logo" />
+          <img src="/logo.png" className="w-20 h-20 rounded-full" alt="logo" />
         </div>
       </div>
-      <div className="bg-[#27292D] border-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+      <div className="bg-white text-black border-white p-8 rounded-lg shadow-lg w-full max-w-lg">
         <div className="flex justify-center mb-4">
           <div className="flex justify-center items-center bg-gray-900"></div>
         </div>
         <h2 className="text-gray-400 text-center text-md mb-1">WELCOME BACK</h2>
-        <h3 className="text-white text-center text-2xl mb-6">Log into your account</h3>
+        <h3 className="text-black text-center text-2xl mb-6">Log into your account</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-200 text-sm mb-2">Email or Username</label>
+            <label htmlFor="email" className="block text-black text-sm mb-2 font-bold">Email or Username</label>
             <input
               type="text"
               id="email"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Enter your email or username"
               value={formData.email}
               onChange={handleChange}
@@ -86,15 +86,15 @@ const LoginPage = () => {
           </div>
           <div className="mb-4">
             <div className="flex justify-between mb-1">
-              <label htmlFor="password" className="block text-gray-200 text-sm">Password</label>
+              <label htmlFor="password" className="block text-black text-sm font-bold">Password</label>
               <div className="text-right">
-                <a href="#" className="text-sm text-gray-200">Forgot password?</a>
+                <a href="#" className="text-sm text-black">Forgot password?</a>
               </div>
             </div>
             <input
               type="password"
               id="password"
-              className="w-full p-2.5 bg-[#27292D] text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full p-2.5 bg-white text-black rounded border border-gray-600 focus:outline-none focus:border-blue-500"
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
@@ -103,14 +103,14 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-[#4A96FF] hover:bg-blue-600 text-white py-2.5 rounded focus:outline-none focus:bg-blue-600"
+            className="w-full bg-[#4A96FF] hover:bg-blue-600 text-white py-2.5 font-bold rounded focus:outline-none focus:bg-blue-600"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login now'}
           </button>
         </form>
         <div className="text-gray-400 text-start mt-4 flex">
-          Not registered yet? <Link to='/signup' className="text-gray-200 ml-1">Register →</Link>
+          Not registered yet? <Link to='/signup' className="text-black ml-1 font-bold">Register →</Link>
         </div>
       </div>
     </div>
