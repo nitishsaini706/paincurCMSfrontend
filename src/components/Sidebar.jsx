@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CiGrid31, CiCalendarDate, CiHospital1, CiViewTimeline, CiViewTable, CiYoutube, CiSettings } from "react-icons/ci";
+import { LiaAddressCard } from "react-icons/lia";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -35,7 +36,6 @@ const Sidebar = () => {
           <CiCalendarDate size="21"/>
           <Link to='/404' className={`${linktext('/appointments')} no-underline ml-2`}>Appointments</Link>
         </div>
-        <div className={`${linkClass('/settings')} flex items-center mb-4`}>
         <div className={`${linkClass('/add-blog')} flex items-center mb-4`}>
           <CiViewTimeline size="21"/>
           <Link to='/add-blog' className={`${linktext('/add-blog')} no-underline ml-2`}>Add Blogs</Link>
@@ -45,9 +45,10 @@ const Sidebar = () => {
           <Link to='/blogs' className={`${linktext('/blogs')} no-underline ml-2`}>Blogs</Link>
         </div>
         <div className={`${linkClass('/blogs')} flex items-center mb-4`}>
-          <CiViewTable size="21"/>
+          <LiaAddressCard size="21"/>
           <Link to='/leads' className={`${linktext('/Leads')} no-underline ml-2`}>Leads</Link>
         </div>
+        <div className={`${linkClass('/blogs')} flex items-center mb-4`}>
           <CiSettings size="21"/>
           <Link to='/404' className={`${linktext('/settings')} no-underline ml-2`}>Settings</Link>
         </div>
