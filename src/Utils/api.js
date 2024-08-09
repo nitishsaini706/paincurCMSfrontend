@@ -17,5 +17,5 @@ export const uploadImage = (file) => {
 export const updateBlog = (slug,blogs) => axiosInstance.put(`/api/blogs/${slug}`, blogs);
 export const createBlog = (blogs) => axiosInstance.post(`/api/blogs/`, blogs);
 export const deleteBlogs = (id) => axiosInstance.delete(`/api/blogs/${id}`);
-
+export const getLeads = () => axiosInstance.get('/api/assessments');
 export default axiosInstance

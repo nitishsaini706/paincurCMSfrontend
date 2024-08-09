@@ -44,11 +44,11 @@ const Sidebar = () => {
           <CiViewTable size="21"/>
           <Link to='/blogs' className={`${linktext('/blogs')} no-underline ml-2`}>Blogs</Link>
         </div>
-        <div className={`${linkClass('/blogs')} flex items-center mb-4`}>
+        <div className={`${linkClass('/leads')} flex items-center mb-4`}>
           <LiaAddressCard size="21"/>
-          <Link to='/leads' className={`${linktext('/Leads')} no-underline ml-2`}>Leads</Link>
+          <Link to='/leads' className={`${linktext('/leads')} no-underline ml-2`}>Leads</Link>
         </div>
-        <div className={`${linkClass('/blogs')} flex items-center mb-4`}>
+        <div className={`${linkClass('/settings')} flex items-center mb-4`}>
           <CiSettings size="21"/>
           <Link to='/404' className={`${linktext('/settings')} no-underline ml-2`}>Settings</Link>
         </div>

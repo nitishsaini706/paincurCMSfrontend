@@ -9,6 +9,7 @@ import PrivateRoute from './Utils/PrivateRoutes';
 import { AuthProvider } from './Context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LeadPage from './components/LeadPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/blogs' element={<PrivateRoute><Landing /></PrivateRoute>} />
           <Route path='/add-blog' element={<PrivateRoute><Addblog /></PrivateRoute>} />
           <Route path='/edit-blog/:slug' element={<PrivateRoute><EditBlog /></PrivateRoute>} />
+          <Route path='/leads' element={<PrivateRoute><LeadPage/></PrivateRoute>}></Route>
         </Routes>
       </Router>
       <ToastContainer /> 
