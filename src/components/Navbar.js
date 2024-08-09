@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
-import { BsArrowDownShort } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
