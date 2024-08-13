@@ -53,7 +53,7 @@ export default function LeadPage() {
                 </tr>
               </thead>
               <tbody>
-                {leads.length > 0 ? (
+                {leads && leads.length > 0 ? (
                   leads.map((data) => (
                     <tr key={data.slug} className="border-b border-gray-300">
                       <td className="p-3">{data[0]['What is your Full Name?']}</td>
